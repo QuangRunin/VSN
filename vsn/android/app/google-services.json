@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "141656244604",
+    "project_id": "vnsn-51c30",
+    "storage_bucket": "vnsn-51c30.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:141656244604:android:8a22f7f96da29f7e69a4f9",
+        "android_client_info": {
+          "package_name": "dev.vn.vsn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "141656244604-m66sati52q3d9n47dmjbsr9afc78jceb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3pJum_Di5w6qn6AgbiziOkgs4_pScrOk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "141656244604-m66sati52q3d9n47dmjbsr9afc78jceb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
