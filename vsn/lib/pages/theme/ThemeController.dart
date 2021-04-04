@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:vsn/common/utils.dart';
+import 'package:vsn/custom_view/custom_tabbar_title.dart';
+import 'package:vsn/custom_view/theme_options_tab.dart';
+import 'package:vsn/custom_view/theme_tab.dart';
 import 'package:vsn/model/m_themes.dart';
 import 'package:vsn/sql_database/database_helper.dart';
 enum ThemeType { Dark, Light }
-class ThemeController extends GetxController {
+class ThemeController extends GetxController  with SingleGetTickerProviderMixin{
   MThemes mThemes;
   DataBaseHelper dbHelper;
+  TabController tabController;
+  final tabBody = <Widget>[];
+  final tabs = <Tab>[];
+  final themeList = [Colors.orange[900],Color(0xFF000000),Color(0xFFFFFFFF),Color(0xFFFF0000),Color(0xFF00FF00),Color(0xFF0000FF),Color(0xFFFFFF00),Color(0xFF00FFFF),Color(0xFFFF00FF),
+                     Color(0xFFC0C0C0),Color(0xFF808080),Color(0xFF800000),Color(0xFF808000),Color(0xFF008000),Color(0xFF800080),Color(0xFF008080),Color(0xFF000080)];
   //default Color
   Color _appBarColor = Colors.orange[900];
   Color _appBarTextColor = Colors.white;
@@ -29,10 +39,33 @@ class ThemeController extends GetxController {
   Color get dividerColor => _dividerColor;
   double get themeFontSize => _themeFontSize;
   int get indexTheme => _indexTheme;
+  final customOption = ["AppBar Color","AppBar Text Color","Title Color","Text Color","Extra Color","Background Color","Icon Tab Color","Divider Color"];
   @override
   void onInit() {
     initTheme();
+    tabController = TabController(vsync: this, length: 2);
+    initTab();
     super.onInit();
+  }
+  @override
+  void onClose() {
+    tabController.dispose();
+    super.onClose();
+  }
+  static  getFont({
+    ThemeController theme,
+    double fontSize,
+    FontWeight fontWeight,
+    double height = 1.0,
+    Color color}) {
+    return GoogleFonts.getFont(
+        'Lemonada',
+        textStyle: TextStyle(
+            color: color != null ? color : theme.textColor,
+            fontSize: theme != null ? fontSize + theme.themeFontSize : fontSize,
+            fontWeight: fontWeight,
+            height: height)
+    );
   }
   initTheme(){
     Future.delayed(Duration.zero,() async{
@@ -80,35 +113,35 @@ class ThemeController extends GetxController {
         _themeFontSize = value;
         mThemes.themeFontSize = value;
         break;
-      case "appBarColor":
+      case "AppBar Color":
         _appBarColor = value;
         mThemes.appBarColor = value.toString();
         break;
-      case "appBarTextColor":
+      case "AppBar Text Color":
         _appBarTextColor = value;
         mThemes.appBarTextColor = value.toString();
         break;
-      case "titleColor":
+      case "Title Color":
         _titleColor = value;
         mThemes.titleColor = value.toString();
         break;
-      case "textColor":
+      case "Text Color":
         _textColor = value;
         mThemes.textColor = value.toString();
         break;
-      case "extraColor":
+      case "Extra Color":
         _extraColor = value;
         mThemes.extraColor = value.toString();
         break;
-      case "scaffoldColor":
+      case "Background Color":
         _scaffoldColor = value;
         mThemes.scaffoldColor = value.toString();
         break;
-      case "iconTabColor":
+      case "Icon Tab Color":
         _iconTabColor = value;
         mThemes.iconTabColor = value.toString();
         break;
-      case "dividerColor":
+      case "Divider Color":
         _dividerColor = value;
         mThemes.dividerColor = value.toString();
         break;
@@ -121,6 +154,8 @@ class ThemeController extends GetxController {
     update();
   }
   void setThemeDefault(){
+    dbHelper = DataBaseHelper();
+    MThemes udTheme;
     _appBarColor = Colors.orange[900];
     _appBarTextColor = Colors.white;
     _titleColor = Colors.black;
@@ -129,9 +164,21 @@ class ThemeController extends GetxController {
     _scaffoldColor = Colors.white;
     _iconTabColor = Colors.orange[900];
     _dividerColor= Color(0xff9e9e9e);
+    _indexTheme = 0;
+    udTheme = MThemes(
+        appBarColor: _appBarColor.toString(),
+        appBarTextColor: _appBarTextColor.toString(),
+        titleColor: _titleColor.toString(),
+        textColor: _textColor.toString(),
+        extraColor: _extraColor.toString(),
+        scaffoldColor: _scaffoldColor.toString(),
+        iconTabColor: _iconTabColor.toString(),
+        dividerColor: _dividerColor.toString(),
+        indexTheme: 0,
+        themeFontSize: 4.0);
+    dbHelper.updateThemes(udTheme);
     update();
   }
-
   void setThemes(Color color, index) {
     dbHelper = DataBaseHelper();
     MThemes udTheme;
@@ -148,6 +195,7 @@ class ThemeController extends GetxController {
     _scaffoldColor = Colors.white;
     _iconTabColor = Colors.orange[900];
     _dividerColor = Color(0xff9e9e9e);
+    _indexTheme = index;
     udTheme = MThemes(
         appBarColor: _appBarColor.toString(),
         appBarTextColor: _appBarTextColor.toString(),
@@ -157,9 +205,20 @@ class ThemeController extends GetxController {
         scaffoldColor: _scaffoldColor.toString(),
         iconTabColor: _iconTabColor.toString(),
         dividerColor: _dividerColor.toString(),
-        indexTheme: 0,
+        indexTheme: index,
         themeFontSize: 4.0);
     dbHelper.updateThemes(udTheme);
     update();
+  }
+  Widget _customTab(title,width) {
+    return Tab(
+        child: CustomTabBarTitle(width: width,title: title)
+    );
+  }
+  initTab(){
+    tabs.add(_customTab('Chủ đề',Get.width / 2));
+    tabs.add(_customTab('Tùy chọn',Get.width / 2));
+    tabBody.add(ThemeTab());
+    tabBody.add(ThemeOptionsTab());
   }
 }

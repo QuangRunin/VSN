@@ -13,14 +13,14 @@ class DashboardPage extends StatelessWidget {
     return GetBuilder<DashboardController>(
       builder: (controller) {
         return Scaffold(
-          body: SafeArea(
-            child: IndexedStack(
-              index: controller.tabIndex,
-              children: [
-                HomePage(),
-                ProfilePage()
-              ],
-            ),
+          body: IndexedStack(
+            index: controller.tabIndex,
+            children: [
+              HomePage(),
+              ProfilePage(),
+              ProfilePage(),
+              ProfilePage()
+            ],
           ),
           bottomNavigationBar: BottomNavigationBar(
             onTap: controller.changeTabIndex,
@@ -34,7 +34,7 @@ class DashboardPage extends StatelessWidget {
                 label: 'Home',
               ),
               _bottomNavigationBarItem(
-                icon: CupertinoIcons.book,
+                icon: CupertinoIcons.arrowtriangle_right_circle_fill,
                 label: 'News',
               ),
               _bottomNavigationBarItem(

@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:vsn/pages/theme/ThemeController.dart';
 
 class Utils {
-  static getFont(
-      {
-        // ThemeController theme,
+  static getFont({
+      ThemeController theme,
       double fontSize,
       FontWeight fontWeight,
       double height = 1.0,
       Color color}) {
-    return TextStyle(
-        // color:color != null ? color : theme.textColor,
-        // fontSize: fontSize + theme.themFontSize,
-        fontWeight: fontWeight,
-        // fontFamily: appFontFamily,
-        height: height);
+    return GoogleFonts.getFont(
+        'Lemonada',
+        textStyle: TextStyle(
+            color: color != null ? color : theme.textColor,
+            fontSize: theme != null ? fontSize + theme.themeFontSize : fontSize,
+            fontWeight: fontWeight,
+            height: height)
+    );
   }
   static Future<void>  showAlertMessage(context,String message) async{
     showDialog<int>(

@@ -11,6 +11,7 @@ const CustomDecoration = BoxDecoration(
     BoxShadow(color: Colors.red, offset: Offset(0, 0), blurRadius: 5, spreadRadius: 1)
   ],
 );
+
 const BaseAppColor =  Color(0xFF1DB57A);
 const TextFieldPaddingVertical = 10.0;
 const TextFieldPaddingHorizontal = 25.0;
