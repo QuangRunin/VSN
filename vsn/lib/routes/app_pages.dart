@@ -3,6 +3,8 @@ import 'package:vsn/pages/dashboard/dashboard_binding.dart';
 import 'package:vsn/pages/dashboard/dashboard_page.dart';
 import 'package:vsn/pages/profile/profile_page.dart';
 import 'package:vsn/pages/setting_theme/setting_theme_page.dart';
+import 'package:vsn/pages/sign_in/sign_in_binding.dart';
+import 'package:vsn/pages/sign_in/sign_in_page.dart';
 import 'package:vsn/pages/sign_up/sign_up_binding.dart';
 import 'package:vsn/pages/sign_up/sign_up_page.dart';
 import 'package:vsn/pages/splash/splash_binding.dart';
@@ -23,11 +25,11 @@ class AppPages {
         page: () => SignUpPage(),
         binding: SignUpBinding()
     ),
-    // GetPage(
-    //     name: AppRoutes.SIGN_IN,
-    //     page: () => SplashPage(),
-    //     binding: SplashBinding()
-    // ),
+    GetPage(
+        name: AppRoutes.SIGN_IN,
+        page: () => SignInPage(),
+        binding: SignInBinding()
+    ),
     GetPage(
       name: AppRoutes.DASHBOARD,
       page: () => DashboardPage(),

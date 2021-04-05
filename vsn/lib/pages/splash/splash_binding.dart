@@ -7,7 +7,7 @@ import 'package:vsn/pages/theme/ThemeController.dart';
 class SplashBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<ThemeController>(() => ThemeController());
     Get.lazyPut<SplashController>(() => SplashController());
+    Get.lazyPut<ThemeController>(() => ThemeController());
   }
 }

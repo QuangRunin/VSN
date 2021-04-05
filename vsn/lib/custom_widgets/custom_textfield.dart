@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:vsn/common/styles.dart';
-
-
 // ignore: must_be_immutable
 class CustomTextField extends StatelessWidget {
   final String label;

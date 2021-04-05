@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/animation.dart';
 import 'package:get/get.dart';
 import 'package:vsn/routes/app_routes.dart';
@@ -27,13 +28,12 @@ class SplashController extends GetxController with SingleGetTickerProviderMixin{
   }
 
   void navigationPage() {
-    Get.offNamed(AppRoutes.SIGN_UP);
-    // FirebaseAuth firebaseAuth = FirebaseAuth.instance;
-    // if(firebaseAuth.currentUser != null){
-    //   Navigator.of(context).pushReplacementNamed(HOME_SCREEN);
-    // }
-    // else {
-    //   Navigator.of(context).pushReplacementNamed(SIGN_IN);
-    // }
+    FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+    if(firebaseAuth.currentUser != null){
+      Get.offNamed(AppRoutes.DASHBOARD);
+    }
+    else {
+      Get.offNamed(AppRoutes.SIGN_IN);
+    }
   }
 }

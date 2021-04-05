@@ -13,7 +13,7 @@ class Utils {
         'Lemonada',
         textStyle: TextStyle(
             color: color != null ? color : theme.textColor,
-            fontSize: theme != null ? fontSize + theme.themeFontSize : fontSize,
+            fontSize: fontSize,
             fontWeight: fontWeight,
             height: height)
     );
