@@ -7,8 +7,10 @@ class CustomButton extends StatelessWidget {
   String title;
   VoidCallback onPressed;
   Color backgroundColor;
+  Color titleColor;
   double borderRadius;
-  CustomButton({Key key, this.themeController, this.title, this.onPressed,this.backgroundColor,this.borderRadius = 10.0}): super(key: key);
+  double fontSize;
+  CustomButton({Key key, this.themeController, this.title, this.onPressed,this.backgroundColor,this.borderRadius = 10.0,this.fontSize = 14.0}): super(key: key);
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
@@ -18,10 +20,10 @@ class CustomButton extends StatelessWidget {
         ),
         side: BorderSide(width: 1, color: Colors.transparent),
         backgroundColor: backgroundColor != null ? backgroundColor : themeController.appBarColor,
-        enableFeedback: true
+        padding: EdgeInsets.only(top: 5)
       ),
       onPressed: () => onPressed(),
-      child: Text(title,style: Utils.getFont(fontSize: 14,theme: themeController,color: themeController.appBarTextColor),textAlign: TextAlign.center),
+      child: Text(title,style: Utils.getFont(fontSize: fontSize,theme: themeController,color: titleColor != null ?  titleColor :themeController.appBarTextColor),textAlign: TextAlign.center),
     );
   }
 }

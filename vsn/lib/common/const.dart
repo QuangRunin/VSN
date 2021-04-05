@@ -19,6 +19,7 @@ class Const extends InheritedWidget {
   static final String post = 'Bài đăng';
   static final String myPage = 'Hồ sơ';
   static final String settingTheme = 'Tùy chọn Theme';
+  static final String postStatus  = 'Đăng bài';
   //validate
   static String emailFormat= "Email Không đúng định dạng";
   static String phoneFormat= "Số điện thoại Không đúng định dạng";

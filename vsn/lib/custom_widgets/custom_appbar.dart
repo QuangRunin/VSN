@@ -17,6 +17,7 @@ class CustomAppBar extends AppBar {
     Widget bottom,
     bool showBackIcon = true,
     bool automaticallyImplyLeading = true,
+    bool centerTitle = true,
     ThemeController themeController,
   }) : super(
     title: Text(title, style: GoogleFonts.getFont('Lemonada',textStyle:TextStyle(color: themeController.appBarTextColor))),
@@ -26,8 +27,8 @@ class CustomAppBar extends AppBar {
       icon: Icons.arrow_back_rounded,
       themeController: themeController,
       onPressed: onBackAction != null ? onBackAction : () => Get.back(),
-    ): SizedBox(height: 0),
-    centerTitle: true,
+    ): null,
+    centerTitle: centerTitle,
     actions: actions,
     elevation: elevation,
     bottom:bottom,
