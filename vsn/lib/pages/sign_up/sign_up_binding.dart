@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:vsn/pages/sign_up/sign_up_controller.dart';
-import 'package:vsn/pages/theme/ThemeController.dart';
+import 'package:vsn/pages/theme/theme_controller.dart';
 
 
 class SignUpBinding extends Bindings {

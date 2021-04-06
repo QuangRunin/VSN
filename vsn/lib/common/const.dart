@@ -8,6 +8,7 @@ class Const extends InheritedWidget {
   static final String appName = 'VSN';
   static final String signIn = 'Đăng nhập';
   static final String signUp = 'Đăng ký';
+  static final String notification = 'Thông báo';
   static final String forgotPassWord = 'Quên mật khẩu';
   static final String userName = 'Tên Đăng nhập';
   static final String passWord = 'Mật Khẩu';
@@ -28,7 +29,13 @@ class Const extends InheritedWidget {
   static String userNameFormat1 = "Tên hiển thị không vượt quá 20 kí tự";
   static String pwFormat = "Mật khẩu phải lớn hơn 6 kí tự";
   static String pwDuplicate = "Mật khẩu không trùng khớp";
-
+  // Firebase key child
+  static String userCollection =  'Users';
+  static String newFeedCollection =  'NewFeeds';
+  //
+  static String postEmpty =  'Vui lòng thêm trạng thái, hoặc ảnh trước khi tiếp tục';
+  static String postStatusSuccess =  'Thêm trạng thái thành công !';
+  static String postStatusFail =  'Thêm trạng thái thất bại!';
   @override
   bool updateShouldNotify(Const oldWidget) => false;
 }

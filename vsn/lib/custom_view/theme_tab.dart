@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vsn/common/styles.dart';
-import 'package:vsn/pages/theme/ThemeController.dart';
+import 'package:vsn/pages/theme/theme_controller.dart';
 class ThemeTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

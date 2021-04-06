@@ -7,7 +7,7 @@ import 'package:vsn/custom_widgets/custom_appbar.dart';
 import 'package:vsn/custom_widgets/custom_button.dart';
 import 'package:vsn/custom_widgets/custom_textfield.dart';
 import 'package:vsn/pages/sign_in/sign_in_controller.dart';
-import 'package:vsn/pages/theme/ThemeController.dart';
+import 'package:vsn/pages/theme/theme_controller.dart';
 import 'package:vsn/routes/app_routes.dart';
 
 class SignInPage  extends GetView<SignInController> {

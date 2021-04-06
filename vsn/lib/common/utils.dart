@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:vsn/pages/theme/ThemeController.dart';
+import 'package:vsn/pages/theme/theme_controller.dart';
 
 class Utils {
   static getFont({

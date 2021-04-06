@@ -4,7 +4,7 @@ import 'package:like_button/like_button.dart';
 import 'package:vsn/common/styles.dart';
 import 'package:vsn/common/utils.dart';
 import 'package:vsn/custom_widgets/cachedImage.dart';
-import 'package:vsn/pages/theme/ThemeController.dart';
+import 'package:vsn/pages/theme/theme_controller.dart';
 // ignore: must_be_immutable
 class NewsFeedItem extends StatelessWidget {
   ThemeController themeController;

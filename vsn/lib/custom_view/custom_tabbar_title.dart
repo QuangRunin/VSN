@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vsn/common/utils.dart';
-import 'package:vsn/pages/theme/ThemeController.dart';
+import 'package:vsn/pages/theme/theme_controller.dart';
 // ignore: must_be_immutable
 class CustomTabBarTitle extends StatelessWidget {
   double width;

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:vsn/common/route_transition_style/present_route.dart';
 import 'package:vsn/pages/dashboard/dashboard_binding.dart';
 import 'package:vsn/pages/dashboard/dashboard_page.dart';
+import 'package:vsn/pages/home/home_page.dart';
 import 'package:vsn/pages/post_status/post_status_binding.dart';
 import 'package:vsn/pages/post_status/post_status_page.dart';
 import 'package:vsn/pages/profile/profile_page.dart';
@@ -45,6 +46,11 @@ class AppPages {
         // customTransition: PresentRoute()
     ),
     GetPage(
+      name: AppRoutes.HOME_PAGE,
+      page: () => HomePage(),
+      binding: DashboardBinding(),
+    ),
+    GetPage(
       name: AppRoutes.DASHBOARD,
       page: () => DashboardPage(),
       binding: DashboardBinding(),
@@ -52,11 +58,6 @@ class AppPages {
     GetPage(
       name: AppRoutes.PROFILE_PAGE,
       page: () => ProfilePage(),
-      binding: DashboardBinding(),
-    ),
-    GetPage(
-      name: AppRoutes.SETTING_THEME,
-      page: () => SettingTheme(),
       binding: DashboardBinding(),
     ),
     GetPage(

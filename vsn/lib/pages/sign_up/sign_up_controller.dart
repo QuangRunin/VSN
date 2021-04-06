@@ -16,7 +16,7 @@ class SignUpController extends  GetxController {
     }
     else {
       Utils.showLoading(context);
-      Services.register(name: mSignUp.name,email: mSignUp.email,password: mSignUp.password).then((value) {
+      Services().register(name: mSignUp.name,email: mSignUp.email,password: mSignUp.password).then((value) {
         Get.back();
         if(value.loaded){
           Get.offNamed(AppRoutes.DASHBOARD);

@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import 'package:vsn/common/const.dart';
 import 'package:vsn/custom_widgets/custom_appbar.dart';
 import 'package:vsn/custom_widgets/custom_tabbar.dart';
-import 'package:vsn/pages/theme/ThemeController.dart';
+import 'package:vsn/pages/theme/theme_controller.dart';
 
 class SettingTheme extends GetView{
   @override

@@ -42,7 +42,7 @@ class SignInController extends  GetxController {
     }
     else {
       Utils.showLoading(context);
-      Services.login(email:mSignIn.email,password:  mSignIn.password).then((value) {
+      Services().login(email:mSignIn.email,password:  mSignIn.password).then((value) {
         Get.back();
         if(value.loaded){
           Get.offNamed(AppRoutes.DASHBOARD);

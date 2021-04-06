@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,7 @@ import 'package:vsn/custom_widgets/appbar_icon.dart';
 import 'package:vsn/custom_widgets/custom_appbar.dart';
 import 'package:vsn/custom_widgets/custom_tabbar.dart';
 import 'package:vsn/pages/profile/profile_controller.dart';
-import 'package:vsn/pages/theme/ThemeController.dart';
+import 'package:vsn/pages/theme/theme_controller.dart';
 import 'package:vsn/routes/app_routes.dart';
 
 class ProfilePage extends GetView<ProfileController> {
@@ -25,8 +26,12 @@ class ProfilePage extends GetView<ProfileController> {
             appBar: CustomAppBar(
               title: Const.myPage,
               themeController: theme,
+              showBackIcon: false,
               actions: [
-                AppBarIcon(themeController: theme,icon: Icons.settings,onPressed: () => Get.toNamed(AppRoutes.SETTING_THEME))
+                AppBarIcon(themeController: theme,alignment: Alignment.centerRight,icon: Icons.settings,onPressed: () => Get.toNamed(AppRoutes.SETTING_THEME)),
+                AppBarIcon(themeController: theme,icon: Icons.logout,onPressed: () => {
+                  controller.signOut()
+                })
               ],
             ),
             body:  NestedScrollView(

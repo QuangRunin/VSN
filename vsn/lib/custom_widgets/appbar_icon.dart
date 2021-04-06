@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:vsn/pages/theme/ThemeController.dart';
+import 'package:vsn/pages/theme/theme_controller.dart';
 
 // ignore: must_be_immutable
 class AppBarIcon extends StatelessWidget {
   ThemeController themeController;
   VoidCallback onPressed;
   Color backgroundColor;
+  Color iconColor;
   dynamic icon;
   AlignmentGeometry alignment;
-  AppBarIcon({Key key, this.themeController,this.alignment, this.icon, this.onPressed,this.backgroundColor}): super(key: key);
+  AppBarIcon({Key key, this.themeController,this.alignment, this.icon, this.onPressed,this.backgroundColor,this.iconColor}): super(key: key);
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -20,12 +21,13 @@ class AppBarIcon extends StatelessWidget {
               borderRadius: BorderRadius.circular(0.0),
             ),
             side: BorderSide(width: 0, color: Colors.transparent),
-            backgroundColor: themeController.appBarColor,
+            backgroundColor: backgroundColor!= null ? backgroundColor : themeController.appBarColor,
             padding: EdgeInsets.zero,
-            alignment: alignment
+            alignment: alignment,
+
         ),
         onPressed: () => {onPressed != null ? onPressed() : null},
-        child: Icon(icon,color: themeController.appBarTextColor),
+        child: Icon(icon,color: iconColor != null ? iconColor : themeController.appBarTextColor),
       ),
     );
   }

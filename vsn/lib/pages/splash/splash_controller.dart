@@ -22,6 +22,7 @@ class SplashController extends GetxController with SingleGetTickerProviderMixin{
     animationController.dispose();
     super.onClose();
   }
+
   startTime() async {
     var _duration = new Duration(seconds: 3);
     return new Timer(_duration, navigationPage);

@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:vsn/common/utils.dart';
 import 'package:vsn/custom_widgets/appbar_icon.dart';
 import 'package:vsn/custom_widgets/custom_button.dart';
-import 'package:vsn/pages/theme/ThemeController.dart';
+import 'package:vsn/pages/theme/theme_controller.dart';
 
 class CustomAppBar extends AppBar {
   CustomAppBar({
