@@ -14,8 +14,9 @@ class HomeController extends GetxController {
     super.onInit();
   }
   void getData() async{
-    await _fireStore.collection(Const.newFeedCollection).get().then((value) => {
-      print(value.metadata)
+    await _fireStore.collection(Const.newFeedCollection).get().then((QuerySnapshot query) => {
+      mPostList = query.docs.map((postJson) => MPost.fromJsonList(postJson.data())).toList()
     });
+    print(mPostList.length);
   }
 }

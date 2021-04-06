@@ -8,6 +8,7 @@ import 'package:vsn/pages/profile/profile_page.dart';
 import 'dashboard_controller.dart';
 
 class DashboardPage extends StatelessWidget {
+  final DashboardController controller = Get.put(DashboardController());
   @override
   Widget build(BuildContext context) {
     return GetBuilder<DashboardController>(

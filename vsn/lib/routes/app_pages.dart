@@ -14,6 +14,7 @@ import 'package:vsn/pages/sign_up/sign_up_binding.dart';
 import 'package:vsn/pages/sign_up/sign_up_page.dart';
 import 'package:vsn/pages/splash/splash_binding.dart';
 import 'package:vsn/pages/splash/splash_page.dart';
+import 'package:vsn/pages/test/test_page.dart';
 
 
 import 'app_routes.dart';
@@ -46,11 +47,6 @@ class AppPages {
         // customTransition: PresentRoute()
     ),
     GetPage(
-      name: AppRoutes.HOME_PAGE,
-      page: () => HomePage(),
-      binding: DashboardBinding(),
-    ),
-    GetPage(
       name: AppRoutes.DASHBOARD,
       page: () => DashboardPage(),
       binding: DashboardBinding(),
@@ -61,8 +57,18 @@ class AppPages {
       binding: DashboardBinding(),
     ),
     GetPage(
+      name: AppRoutes.HOME_PAGE,
+      page: () => HomePage(),
+      binding: DashboardBinding(),
+    ),
+    GetPage(
       name: AppRoutes.SETTING_THEME,
       page: () => SettingTheme(),
+      binding: DashboardBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.TEST_PAGE,
+      page: () => TestPage(),
       binding: DashboardBinding(),
     ),
   ];

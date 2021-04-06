@@ -8,6 +8,7 @@ import 'package:vsn/pages/home/home_controller.dart';
 import 'package:vsn/pages/theme/theme_controller.dart';
 import 'package:vsn/routes/app_routes.dart';
 class HomePage extends GetView<HomeController> {
+  final HomeController controller = Get.put(HomeController());
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ThemeController>(

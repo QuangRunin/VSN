@@ -7,4 +7,5 @@ class AppRoutes {
   static const String SIGN_IN = '/sign_in_page';
   static const String POST_STATUS = '/post_status_page';
   static const String HOME_PAGE = '/home_page';
+  static const String TEST_PAGE = '/test_page';
 }

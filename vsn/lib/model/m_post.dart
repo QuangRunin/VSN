@@ -49,4 +49,15 @@ class MPost {
     totalLike = data['totalLike'];
     totalShare = data['totalShare'];
   }
+  MPost.fromJsonList(Map<String, dynamic> data) {
+    uid = data['uid'];
+    name = data['name'];
+    status = data['status'];
+    dateTime = data['dateTime'];
+    avatarUrl = data['avatarUrl'];
+    image = data['image'];
+    totalCount = data['totalCount'];
+    totalLike = data['totalLike'];
+    totalShare = data['totalShare'];
+  }
 }
