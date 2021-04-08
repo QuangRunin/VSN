@@ -18,18 +18,18 @@ class MUser {
   dynamic albumVideo;
 
   MUser(
-      {this.uid = 'null',
-      this.name = 'null',
-      this.email = 'null',
-      this.avatar = 'null',
+      {this.uid,
+      this.name,
+      this.email,
+      this.avatar,
       this.isOnline = false,
-      this.birthday = 'null',
-      this.sex = 'null',
-      this.address = 'null',
+      this.birthday,
+      this.sex,
+      this.address,
       this.password,
       this.confirmPassword,
-      this.followed = 'null',
-      this.following = 'null',
+      this.followed,
+      this.following,
       this.albumImage ,
       this.albumStatus ,
       this.albumVideo });

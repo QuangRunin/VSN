@@ -4,13 +4,16 @@ import 'package:like_button/like_button.dart';
 import 'package:vsn/common/styles.dart';
 import 'package:vsn/common/utils.dart';
 import 'package:vsn/custom_widgets/cachedImage.dart';
+import 'package:vsn/model/m_post.dart';
 import 'package:vsn/pages/theme/theme_controller.dart';
 // ignore: must_be_immutable
 class NewsFeedItem extends StatelessWidget {
   ThemeController themeController;
-  NewsFeedItem({this.themeController});
+  MPost mPost;
+  NewsFeedItem({this.themeController,this.mPost});
   @override
   Widget build(BuildContext context) {
+    print('>>> ${mPost.avatarUrl}');
     return Container(
       color: Colors.white,
       margin: EdgeInsets.only(top: 16.0),
@@ -28,7 +31,7 @@ class NewsFeedItem extends StatelessWidget {
                   height: 40.0,
                   child: ClipRRect(
                     borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                    child: CachedImage(image: noImage)
+                    child: CachedImage(image: mPost.avatarUrl != null ? mPost.avatarUrl  : noImage)
                   ),
                 ),
                 SizedBox(width: 10.0),
@@ -37,12 +40,12 @@ class NewsFeedItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Nguyễn Hồng Quang",
+                      mPost.name,
                       style: Utils.getFont(theme: themeController,fontSize: 14.0,fontWeight: FontWeight.w700,),
                     ),
                     SizedBox(height: 3.0),
                     Text(
-                      "2/21/2020",
+                      mPost.dateTime,
                       style: Utils.getFont(theme: themeController,fontSize: 11.0,fontWeight: FontWeight.w500),
                     ),
                   ],
@@ -50,22 +53,22 @@ class NewsFeedItem extends StatelessWidget {
               ],
             ),
           ),
-          Padding(
+          mPost.status != null ? Padding(
             padding: const EdgeInsets.only(top: 16.0,left: 16.0,right: 16.0),
             child: Text(
-              'Một năm nào đó em sẽ quên mất tên anh,quên mất nụ cười của anh, quên mất những lần chuyện trò, quên mất đôi ba ánh nhìn, quên hết thảy mọi thứ, nhưng sẽ không bao giờ quên được em của năm đó đã kiên trì thế nào 💚',
+              mPost.status,
               style: Utils.getFont(theme: themeController,fontSize: 14.0,fontWeight: FontWeight.w500,height: 1.5),
             ),
-          ),
-          Padding(
+          ) : SizedBox(),
+          mPost.image != null ? Padding(
             padding: const EdgeInsets.only(top: 16.0),
             child: SizedBox(
               height: 300.0,
               child: CachedImage(
-                image: noImage,
+                image: mPost.image,
               ),
             ),
-          ),
+          ) : SizedBox(),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
@@ -73,7 +76,7 @@ class NewsFeedItem extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  "162,222 likes",
+                  "${mPost.totalLike} likes",
                   style: Utils.getFont(theme: themeController,fontSize: 12.0,fontWeight: FontWeight.w700,),
                 ),
                 SizedBox(height: 14.0),

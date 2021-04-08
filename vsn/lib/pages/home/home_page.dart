@@ -7,8 +7,7 @@ import 'package:vsn/custom_widgets/custom_appbar.dart';
 import 'package:vsn/pages/home/home_controller.dart';
 import 'package:vsn/pages/theme/theme_controller.dart';
 import 'package:vsn/routes/app_routes.dart';
-class HomePage extends GetView<HomeController> {
-  final HomeController controller = Get.put(HomeController());
+class HomePage extends GetView<HomeController>{
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ThemeController>(
@@ -27,17 +26,20 @@ class HomePage extends GetView<HomeController> {
               ],
             ),
             body: SingleChildScrollView(
-              padding: EdgeInsets.only(bottom: 55.0),
+              padding: EdgeInsets.only(bottom: 16.0),
               physics: BouncingScrollPhysics(),
-              child: ListView.builder(
-                padding: EdgeInsets.zero,
-                itemCount: 10,
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  return NewsFeedItem(themeController:theme);
-                },
-              ),
+              child: GetBuilder<HomeController>(builder: (controller){
+                return ListView.builder(
+                  padding: EdgeInsets.zero,
+                  itemCount: controller.mPostList.length,
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  reverse: true,
+                  itemBuilder: (context, index) {
+                    return NewsFeedItem(mPost: controller.mPostList[index],themeController:theme);
+                  },
+                );
+              }),
             )
         );
       },

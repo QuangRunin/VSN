@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
@@ -41,23 +43,32 @@ class PostStatusPage extends GetView<PostStatusController>{
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
-                child: Padding(
-                  padding: EdgeInsets.all(10.0),
-                  child: TextField(
-                    minLines: 1,
-                    maxLines: 10,
-                    onChanged: (value){
-                      controller.setStatus(data: value);
-                    },
-                    style: new TextStyle(fontSize: 16.0),
-                    decoration: new InputDecoration(
-                        border: InputBorder.none,
-                        focusedBorder: InputBorder.none,
-                        enabledBorder: InputBorder.none,
-                        errorBorder: InputBorder.none,
-                        disabledBorder: InputBorder.none,
-                        hintText: 'Trạng thái của bạn?'
-                    ),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: TextField(
+                          minLines: 1,
+                          maxLines: 10,
+                          onChanged: (value){
+                            controller.setStatus(data: value);
+                          },
+                          style: new TextStyle(fontSize: 16.0),
+                          decoration: new InputDecoration(
+                              border: InputBorder.none,
+                              focusedBorder: InputBorder.none,
+                              enabledBorder: InputBorder.none,
+                              errorBorder: InputBorder.none,
+                              disabledBorder: InputBorder.none,
+                              hintText: 'Trạng thái của bạn?'
+                          ),
+                        ),
+                      ),
+                      GetBuilder<PostStatusController>(builder: (controller){
+                        return controller.image != null ? new Image.file(controller.image) : SizedBox();
+                      })
+                    ],
                   ),
                 ),
               ),

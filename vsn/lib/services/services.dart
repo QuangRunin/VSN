@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:intl/intl.dart';
 import 'package:vsn/common/const.dart';
 import 'package:vsn/model/m_post.dart';
 import 'package:vsn/model/m_results.dart';
@@ -8,6 +12,7 @@ import 'package:vsn/model/m_user.dart';
 class Services {
   final FirebaseFirestore _fireStore = FirebaseFirestore.instance;
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  final fireStorage = FirebaseStorage.instance;
 
   Future<MResults> login({email,password}) async{
     FirebaseAuth firebaseAuth = FirebaseAuth.instance;
@@ -47,10 +52,22 @@ class Services {
       return MResults(loading: false,loaded: false,loadFailed: true,loadMore: false,data: null,message: e.toString());
     }
   }
-
-  Future<MResults> createPost({MPost mPost}) async{
+  // Status
+  Future<MResults> createPost({dynamic file ,MPost mPost}) async{
+    String  now  = Timestamp.now().seconds.toString();
     try {
-      await _fireStore.collection(Const.newFeedCollection).doc('Post${Timestamp.now().seconds.toString()}').set(mPost.toMap(mPost));
+      if(file != null){
+        await fireStorage.ref().child('Images/NewsFeed/post_image$now').putFile(file).then((snapshot) async{
+          var downloadUrl = await snapshot.ref.getDownloadURL();
+          if(downloadUrl  != null){
+            mPost.image = downloadUrl;
+            await _fireStore.collection(Const.newFeedCollection).doc('Post$now').set(mPost.toMap(mPost));
+          }
+        });
+      }
+      else {
+        await _fireStore.collection(Const.newFeedCollection).doc('Post${Timestamp.now().seconds.toString()}').set(mPost.toMap(mPost));
+      }
       return MResults(loading: false,loaded: true,loadFailed: false,loadMore: false,data: null,message: 'Đăng bài thành công');
     } catch(e){
       return MResults(loading: false,loaded: false,loadFailed: true,loadMore: false,data: null,message: e.toString());
@@ -65,5 +82,20 @@ class Services {
     } catch(e){
       return MResults(loading: false,loaded: false,loadFailed: true,loadMore: false,data: null,message: e.toString());
     }
+  }
+  Future<MResults> likePost({postId}) async{
+    try {
+      // await _fireStore.collection(Const.newFeedCollection).doc(postId).set(data);
+      return MResults(loading: false,loaded: true,loadFailed: false,loadMore: false,data: null,message: 'Đăng bài thành công');
+    } catch(e){
+      return MResults(loading: false,loaded: false,loadFailed: true,loadMore: false,data: null,message: e.toString());
+    }
+  }
+  Future updateAvatar() async{
+    await _fireStore.collection('NewFeeds').get().then((snapshots) => {
+      snapshots.docs.forEach((element) {
+        print(element.id);
+      })
+    });
   }
 }

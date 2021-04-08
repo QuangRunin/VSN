@@ -7,12 +7,14 @@ import 'package:intl/intl.dart';
 import 'package:vsn/common/const.dart';
 import 'package:vsn/common/utils.dart';
 import 'package:vsn/model/m_post.dart';
+import 'package:vsn/pages/home/home_controller.dart';
 import 'package:vsn/pages/profile/profile_controller.dart';
 import 'package:vsn/services/services.dart';
 
 class PostStatusController extends GetxController {
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   final ProfileController profileController = Get.find();
+  final HomeController homeController = Get.find();
   File image;
   final picker = ImagePicker();
   String status;
@@ -22,6 +24,7 @@ class PostStatusController extends GetxController {
   @override
   void onInit() {
     dateTime = DateFormat("dd-MM-yyy HH:mm:ss").format(now);
+    Services().updateAvatar();
     super.onInit();
   }
   Future getImage({type}) async {
@@ -33,24 +36,24 @@ class PostStatusController extends GetxController {
   }
   void setStatus({data}){
     status = data;
-    print(status);
     update();
   }
   void postStatus(context){
     if(status != null || image != null){
       Utils.showLoading(context);
-      Services().createPost(mPost: MPost(
+      Services().createPost(file: image,mPost: MPost(
           uid: profileController.mUser.uid,
           name: profileController.mUser.name,
           status: status,
           dateTime:dateTime,
           avatarUrl: profileController.mUser.avatar,
-          image: image,
+          isLike: false,
           totalCount: 0,
           totalLike: 0,
           totalShare: 0)).then((value) async{
             Get.back();
             if(value.loaded){
+              homeController.getData();
               await Future.delayed(Duration(milliseconds: 500),(){
                 Get.back();
                 Get.snackbar(Const.notification,Const.postStatusSuccess);
@@ -65,7 +68,5 @@ class PostStatusController extends GetxController {
       Get.snackbar(Const.notification, Const.postEmpty);
     }
   }
-  void test(){
-    print('status $status');
-  }
+
 }

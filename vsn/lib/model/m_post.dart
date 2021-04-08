@@ -12,6 +12,7 @@ class MPost {
   dynamic totalLike;
   dynamic totalShare;
   dynamic image;
+  List<ListLike> listLike;
 
   MPost(
       {this.uid,
@@ -19,10 +20,13 @@ class MPost {
       this.status,
       this.dateTime,
       this.avatarUrl,
+      this.isLike,
       this.totalCount,
       this.totalLike,
       this.totalShare,
-      this.image});
+      this.image,
+      this.listLike
+      });
 
   Map toMap(MPost post) {
     var data = Map<String, dynamic>();
@@ -31,33 +35,47 @@ class MPost {
     data["status"] = post.status;
     data["dateTime"] = post.dateTime;
     data["avatarUrl"] = post.avatarUrl;
+    data["isLike"] = post.isLike;
     data["image"] = post.image;
     data["totalCount"] = post.totalCount;
     data["totalLike"] = post.totalLike;
     data["totalShare"] = post.totalShare;
+    data["listLike"] = post.listLike;
+    return data;
+  }
+  MPost.fromJson(Map<String, dynamic> data) {
+    uid = data['uid'];
+    name = data['name'];
+    status = data['status'];
+    dateTime = data['dateTime'];
+    avatarUrl = data['avatarUrl'];
+    isLike = data['isLike'];
+    image = data['image'];
+    totalCount = data['totalCount'];
+    totalLike = data['totalLike'];
+    totalShare = data['totalShare'];
+    listLike = data["listLike"] != null ? List<ListLike>.from(data["listLike"].map((x) => ListLike.fromJson(x))) : null;
+  }
+}
+
+class ListLike {
+  String uid;
+  String name;
+  String avatarUrl;
+
+  ListLike({this.uid, this.name, this.avatarUrl});
+
+  Map toMap(ListLike mLike) {
+    var data = Map<String, dynamic>();
+    data["uid"] = mLike.uid;
+    data["name"] = mLike.name;
+    data["avatarUrl"] = mLike.avatarUrl;
     return data;
   }
 
-  MPost.fromJson(Map data) {
+  ListLike.fromJson(Map<String, dynamic> data) {
     uid = data['uid'];
     name = data['name'];
-    status = data['status'];
-    dateTime = data['dateTime'];
     avatarUrl = data['avatarUrl'];
-    image = data['image'];
-    totalCount = data['totalCount'];
-    totalLike = data['totalLike'];
-    totalShare = data['totalShare'];
-  }
-  MPost.fromJsonList(Map<String, dynamic> data) {
-    uid = data['uid'];
-    name = data['name'];
-    status = data['status'];
-    dateTime = data['dateTime'];
-    avatarUrl = data['avatarUrl'];
-    image = data['image'];
-    totalCount = data['totalCount'];
-    totalLike = data['totalLike'];
-    totalShare = data['totalShare'];
   }
 }
